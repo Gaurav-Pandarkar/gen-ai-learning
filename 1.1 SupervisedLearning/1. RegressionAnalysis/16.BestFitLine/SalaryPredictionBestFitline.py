@@ -1,0 +1,26 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+df = pd.read_csv("salary_data.csv")
+
+x = df.drop('Salary',axis=1)
+y = df['Salary']
+
+model = LinearRegression()
+model.fit(x,y)
+
+re_predict_all_x = model.predict(x)
+
+output = model.predict([[11]])
+print(output)
+
+plt.scatter(df['Experience'],df['Salary'],label='Observed Data')
+plt.scatter(df['Experience'],re_predict_all_x,color='blue',label = 'Predicted Data')
+plt.plot(df['Experience'],re_predict_all_x,color='red',label = 'Best Fit line')
+plt.legend()
+
+score=model.score(x,y)
+print(f"Score:{score}")
+
+plt.show()
