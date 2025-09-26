@@ -3,7 +3,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, f1_score
-
+import pickle
 df = pd.read_csv('iris.csv')
 
 encoder = LabelEncoder()
@@ -17,6 +17,9 @@ X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_
 model = LogisticRegression()
 
 model.fit(X_train,y_train)
+
+with open('iris_model.bin', 'wb') as file:
+    pickle.dump((model, encoder), file)
 
 output = model.predict(pd.DataFrame([[5,3.6,1.4,0.2]],columns=['sepal_length','sepal_width','petal_length','petal_width']))
 
