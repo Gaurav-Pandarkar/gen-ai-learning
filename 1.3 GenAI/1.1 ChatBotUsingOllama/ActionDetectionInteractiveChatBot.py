@@ -27,7 +27,7 @@ def detect_action_with_model(user_input: str):
     return action
 
 def main():
-    user_input = input("Enter your prompt: ")
+    user_input = input("Enter your prompt here: ")
 
     action_type = detect_action_with_model(user_input)
     print("Detected Action:", action_type)
