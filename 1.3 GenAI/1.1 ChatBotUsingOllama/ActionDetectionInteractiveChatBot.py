@@ -16,7 +16,7 @@ def detect_action(prompt: str):
         return "TEXT"
 
 def main():
-    user_input = input("Enter your prompt: ")
+    user_input = input("Enter your prompt here: ")
 
     action_type = detect_action(user_input)
 
@@ -25,8 +25,7 @@ def main():
     response = llm.invoke([HumanMessage(content=detailed_prompt)])
 
     print("Detected Action:", action_type)
-    print("Detailed Prompt Sent to Ollama:", detailed_prompt)
-    print("Ollama Understanding:\n", response.content)
+    print("Response as per detected action", response.content)
 
 if __name__ == "__main__":
     main()
